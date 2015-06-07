@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  country: MyString
+  locality: MyString
+  index: MyString
+  addres_line: MyText
+  delete: false
+  main: false
+
+two:
+  user_id: 
+  country: MyString
+  locality: MyString
+  index: MyString
+  addres_line: MyText
+  delete: false
+  main: false

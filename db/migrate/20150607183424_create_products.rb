@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.attachment :image
       t.integer :amount
-      t.decimal :price
+      t.decimal :price, precision: 15, scale: 2
 
       t.timestamps null: false
     end

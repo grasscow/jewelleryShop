@@ -4,7 +4,7 @@ class CreateLineItems < ActiveRecord::Migration
       t.references :cart, index: true
       t.references :product, index: true
       t.integer :quantity
-      t.decimal :price
+      t.decimal :price, precision: 15, scale: 2
 
       t.timestamps null: false
     end

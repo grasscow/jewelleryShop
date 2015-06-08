@@ -1,0 +1,13 @@
+%nav.navbar.navbar-default
+  .container
+    .navbar-header
+      =link_to "Магазин", root_path, class: "navbar-brand"
+      =link_to ?#, class: "navbar-toggle collapsed",
+      data:{toggle: "collapse", target: "#menu"} do
+        = fa_icon 'bars'
+  #menu.collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li=link_to "Все товары", products_path
+      %li=link_to "Корзина", line_items_path
+      %li=link_to "категория", categories_path
+

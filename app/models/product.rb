@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-    has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100"}
+    has_attached_file :image, styles: {medium: "300x300>", thumb: "100x100", small: "200x200"}
     belongs_to :category
     has_many :line_items, dependent: :nullify
     

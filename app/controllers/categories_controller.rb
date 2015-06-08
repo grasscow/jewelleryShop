@@ -7,9 +7,18 @@ class CategoriesController < ApplicationController
     @categories = Category.all
   end
 
+  def browse
+    @categories = Category.all
+    @products = @categories.last.try :products || []
+  end
+
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @products = @category.products
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /categories/new

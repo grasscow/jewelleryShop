@@ -1,0 +1,5 @@
+.row
+	.col-md-3
+		- @categories.each do |c|
+			= link_to c.name, category_path(c), type: 'button', class: 'btn btn-default btn-lg btn-block', remote: true
+	#products

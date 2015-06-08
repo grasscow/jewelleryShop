@@ -1,0 +1,20 @@
+#products
+  - strips = 3 
+  - strips.times do |s| 
+    %div{class: "col-xs-#{9 / strips}"}
+      - if s.zero?
+        = link_to '+', new_product_path, type: 'button', class: 'btn btn-danger btn-lg btn-block add-btn', remote: true
+        %br
+      - prod = s 
+      - while (product = products[prod]).present?
+        = link_to product_path(product) do
+          .thumbnail
+            = image_tag product.image.url(:small) 
+            .caption
+              %h3= product.name
+              %p blah blah
+        %br
+        - prod += strips
+
+  - if products.size.zero?
+    %h1 Здесь ничего нет :D

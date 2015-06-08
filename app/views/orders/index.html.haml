@@ -1,0 +1,30 @@
+%p#notice= notice
+%h1 Listing Orders
+%table
+  %thead
+    %tr
+      %th Cart
+      %th User
+      %th Address
+      %th Status
+      %th Delivery type
+      %th Dalivery date
+      %th Pay type
+      %th Active
+      %th{:colspan => "3"}
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.cart
+        %td= order.user
+        %td= order.address
+        %td= order.status
+        %td= order.delivery_type
+        %td= order.dalivery_date
+        %td= order.pay_type
+        %td= order.active
+        %td= link_to 'Show', order
+        %td= link_to 'Edit', edit_order_path(order)
+        %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Order', new_order_path

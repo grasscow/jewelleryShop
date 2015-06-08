@@ -1,0 +1,28 @@
+%p#notice= notice
+%p
+  %strong Cart:
+  = @order.cart
+%p
+  %strong User:
+  = @order.user
+%p
+  %strong Address:
+  = @order.address
+%p
+  %strong Status:
+  = @order.status
+%p
+  %strong Delivery type:
+  = @order.delivery_type
+%p
+  %strong Dalivery date:
+  = @order.dalivery_date
+%p
+  %strong Pay type:
+  = @order.pay_type
+%p
+  %strong Active:
+  = @order.active
+= link_to 'Edit', edit_order_path(@order)
+|
+= link_to 'Back', orders_path

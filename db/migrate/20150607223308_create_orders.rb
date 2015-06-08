@@ -8,7 +8,7 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :delivery_type
       t.date :dalivery_date
       t.integer :pay_type
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps null: false
     end

@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.date :b_date
       t.string :m_phone
       t.string :email
-      t.char :gender
+      t.string :gendert, limit: 1
       t.integer :role
       t.string :password_digest
 

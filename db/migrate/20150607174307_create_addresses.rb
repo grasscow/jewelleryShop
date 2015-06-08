@@ -6,8 +6,8 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :locality
       t.string :index
       t.text :addres_line
-      t.boolean :delete
-      t.boolean :main
+      t.boolean :delete, default: false
+      t.boolean :main, default: false
 
       t.timestamps null: false
     end

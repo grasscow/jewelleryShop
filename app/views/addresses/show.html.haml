@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong User:
+  = @address.user
+%p
+  %strong Country:
+  = @address.country
+%p
+  %strong Locality:
+  = @address.locality
+%p
+  %strong Index:
+  = @address.index
+%p
+  %strong Addres line:
+  = @address.addres_line
+%p
+  %strong Delete:
+  = @address.delete
+%p
+  %strong Main:
+  = @address.main
+= link_to 'Edit', edit_address_path(@address)
+|
+= link_to 'Back', addresses_path

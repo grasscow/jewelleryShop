@@ -1,4 +1,5 @@
-= form_for(@product) do |f|
+= form_for(@product, authenticity_token: true, remote: true, multipart: true) do |f|
+  = f.hidden_field :category_id
   - if @product.errors.any?
     #error_explanation
       %h2
@@ -7,28 +8,24 @@
       %ul
         - @product.errors.full_messages.each do |message|
           %li= message
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name
-  .field
-    = f.label :category_id
-    %br/
-    = f.text_field :category_id
-  .field
-    = f.label :description
-    %br/
-    = f.text_area :description
-  .field
-    = f.label :image
-    =f.file_field :image
-  .field
-    = f.label :amount
-    %br/
-    = f.number_field :amount
-  .field
-    = f.label :price
-    %br/
-    = f.text_field :price
-  .actions
-    = f.submit
+  .form-group
+    = f.text_field :name, class: 'form-control', placeholder: 'Наименование'
+  .form-group
+    = f.text_area :description, class: 'form-control', placeholder: 'Описание'
+  .form-group
+    .input-group
+      .input-group-addon
+        Фото
+      = f.file_field :image, class: 'form-control'
+  .form-group
+    .input-group
+      .input-group-addon
+        X
+      = f.number_field :amount, class: 'form-control', placeholder: 'Кол-во на скалде'
+  .form-group
+    .input-group
+      .input-group-addon
+        $
+      = f.text_field :price, class: 'form-control', placeholder: 'Цена'
+  .form-group
+    = f.submit 'Создать новый товар', class: 'btn btn-primary pull-left'

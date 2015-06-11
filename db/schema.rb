@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607223308) do
+ActiveRecord::Schema.define(version: 20150611071836) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "user_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150607223308) do
     t.date     "b_date"
     t.string   "m_phone"
     t.string   "email"
-    t.string   "gendert",         limit: 1
+    t.string   "gender",          limit: 1
     t.integer  "role"
     t.string   "password_digest"
     t.datetime "created_at",                null: false

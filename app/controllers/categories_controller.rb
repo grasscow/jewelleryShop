@@ -9,13 +9,14 @@ class CategoriesController < ApplicationController
 
   def browse
     @categories = Category.all
+    @new_category = Category.new
     @products = @categories.last.try :products || []
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @products = @category.products
+    @products = @category.products.order(created_at: :desc)
     respond_to do |format|
       format.js
     end
@@ -34,16 +35,8 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
-      else
-        format.html { render :new }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
-    end
+    @category.save
+    redirect_to browse_categories_path
   end
 
   # PATCH/PUT /categories/1

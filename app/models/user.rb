@@ -10,14 +10,16 @@ class User < ActiveRecord::Base
   validates :role, presence: true, inclusion: {in: 0...ROLES.size}
   validates :m_phone, presence: true, length: {is: 12}
   validates :gender, length: {is: 1},  presence: true,inclusion: { in: %w(м ж) }
-  
-  
+
+
   before_validation :set_default_role
 
   def admin?
     role==1
     end
-  private
+
+private
+
   def set_default_role
     self.role ||= 0
   end

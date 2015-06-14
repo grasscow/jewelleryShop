@@ -8,4 +8,20 @@ class Product < ActiveRecord::Base
     validates :category_id, presence: true
     validates_attachment :image, content_type: {content_type: /\Aimage\//}
     validates :amount, presence: true, numericality: {greater_than: 0}
+
+
+
+    before_validation :set_default_category
+
+    def admin?
+        role==1
+    end
+
+    private
+
+    def set_default_category
+        q = Category.where("name like ?", "Без категории")
+        self.category ||= q.id
+    end
+
 end

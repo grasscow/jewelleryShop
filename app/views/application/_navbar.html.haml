@@ -9,6 +9,7 @@
     %ul.nav.navbar-nav
       %li=link_to "Все товары", browse_categories_path
       %li=link_to "Корзина", line_items_path
+      %li=link_to 'Категории', categories_path
       -if @current_user.try(:admin?)
         %li=link_to 'Пользователи', users_path
     %ul.nav.navbar-nav.navbar-right

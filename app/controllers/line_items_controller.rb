@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
   # GET /line_items
   # GET /line_items.json
   def index
-    @line_items = LineItem.all
+    @line_items = @cart.line_items.all #includes(:product). тут не пишем, в модели написали
   end
 
   # GET /line_items/1
@@ -24,16 +24,12 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
-
-    respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
-        format.json { render :show, status: :created, location: @line_item }
-      else
-        format.html { render :new }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
+    @product = Product.find(params[:product_id])
+    @cart.add_item(@product)
+    #redirect_to @product, notice:  "Товар добавлен в корзину"
+    respond_to do |format| #указать какой тип запроса аякс или нет
+      format.html {redirect_to  @product, notice:  "Товар добавлен в корзину"}
+      format.js
     end
   end
 
@@ -56,19 +52,23 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      if params[:mode].blank?
+        format.html { redirect_to line_items_url }
+      else
+        format.html { redirect_to product_url }
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_line_item
-      @line_item = LineItem.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_line_item
+    @line_item = LineItem.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def line_item_params
-      params.require(:line_item).permit(:cart_id, :product_id, :quantity, :price)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def line_item_params
+    params.require(:line_item).permit(:quantity, :price, :cart_id, :product_id)
+  end
 end

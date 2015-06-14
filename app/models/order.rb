@@ -15,4 +15,14 @@ class Order < ActiveRecord::Base
   validates :status, presence: true, inclusion: {in: 0...ROLES.size}
   validates :pay_type, presence: true, inclusion: {in: 0...ROLES.size}
   validates :active, presence: true
+
+
+  validate :check_cart
+  scope :ordering, ->{order(created_at: :desc)}
+
+  def check_cart
+    if cart&&cart.line_items.blank?
+      errors/add(:cart, 'пуста')
+    end
+  end
 end

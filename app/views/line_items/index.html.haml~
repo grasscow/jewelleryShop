@@ -14,7 +14,7 @@
           ="=#{number_to_currency line_item.total_price}"# в модели лайн итемс метод
           = link_to  line_item, :method => :delete, class:"btn btn-danger" do
             =fa_icon "fa times"
-            удалить
+            = t('layouts.destroy')
 
         %span.text-danger="#{i+1}"
         =line_item.product.name
@@ -23,7 +23,7 @@
 
   .alert.alert-info
     Всего
-    =@line_items.to_a.sum(&:quantity)
+    =@line_items.to_a.sum(&:quantity)#& = {|x| x.quantity}sum(:guantity)не нужно так делать, так как запрос делает к баззе данных, а это долго
     Товаров на сумму
     =number_to_currency @line_items.to_a.sum(&:total_price) #&&
 
@@ -36,5 +36,3 @@
 =link_to  @cart, :method => :delete, :data => { :confirm => 'Вы уверены?' }, class:"btn btn-danger" do
   =fa_icon "trash"
   очистить корзину
-
-=link_to "Оформить заказ", new_order_path

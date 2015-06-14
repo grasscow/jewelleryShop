@@ -15,17 +15,17 @@
   .form-group
     .input-group
       .input-group-addon
-        Фото
+        = fa_icon 'picture-o'
       = f.file_field :image, class: 'form-control'
   .form-group
     .input-group
       .input-group-addon
-        X
+        = fa_icon 'times'
       = f.number_field :amount, class: 'form-control', placeholder: 'Кол-во на скалде'
   .form-group
     .input-group
       .input-group-addon
-        $
+        = fa_icon 'usd'
       = f.text_field :price, class: 'form-control', placeholder: 'Цена'
   .form-group
-    = f.submit 'Создать новый товар', class: 'btn btn-primary pull-left'
+    = f.submit 'Сохранить товар', class: 'btn btn-primary pull-left'

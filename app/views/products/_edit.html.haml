@@ -1,0 +1,5 @@
+.row#product-form
+  .panel.panel-default
+    .panel-body
+      = render 'form'
+      = link_to 'Закрыть', category_path(@product.category_id), type: 'button', class: 'btn btn-danger pull-right', remote: true

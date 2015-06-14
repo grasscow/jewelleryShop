@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   def admin?
     role==1
-    end
+  end
 
 private
 

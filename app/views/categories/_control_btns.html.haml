@@ -1,0 +1,14 @@
+.btn-group
+  - if product.amount > 4
+    = link_to (fa_icon 'shopping-cart'), 'запили меня', class: 'btn btn-default btn-xs'
+  - elsif product.amount > 0
+    = link_to 'q', class: 'btn btn-warning btn-xs' do
+      = fa_icon 'shopping-cart'
+      %span.badge= product.amount
+  - else
+    = link_to 'Нет в наличии', '#', class: 'btn btn-primary btn-xs', disabled: true
+  - if @current_user.admin?
+    = link_to edit_product_path(product), type: 'button', class: 'btn btn-default btn-xs', remote: true do
+      = fa_icon 'pencil'
+    = link_to product, method: :delete, data: {confirm: "Удалить?"}, type: 'button', class: 'btn btn-default btn-xs', remote: true do
+      = fa_icon 'trash-o'

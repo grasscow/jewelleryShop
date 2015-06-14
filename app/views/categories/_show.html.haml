@@ -1,32 +1,35 @@
 #products
+  - if @current_user.admin?
+    .row
+      .btn-group.pull-right{role: 'group'}
+        = link_to new_product_path(category_id: @category), data: {confirm: "Удалить Категорию?"}, type: 'button', class: 'btn btn-danger add-btn', remote: true do
+          = fa_icon 'trash-o'
+
+        = link_to new_product_path(category_id: @category), type: 'button', class: 'btn btn-danger add-btn', remote: true do
+          = fa_icon 'plus'
+    %br
+
   .row
     - strips = 3 
     - strips.times do |s| 
       %div{class: "col-xs-#{12 / strips}"}
-        - if s.zero?
-          = link_to (fa_icon 'plus'), new_product_path(category_id: @category), type: 'button', class: 'btn btn-danger btn-lg btn-block add-btn', remote: true
-          %br
         - prod = s 
-        - while (product = @products[prod]).present?
-          = link_to product_path(product) do
-            .thumbnail{ id: "product-#{product.id}"}
-              = image_tag product.image.url(:small) 
+        - while @products.present? && (product = @products[prod]).present?
+          = link_to product_path(product), remote: true do
+            .thumbnail
+              = image_tag product.image.url(:medium)
               .caption
                 %h3.nounderline
                   = product.name
                   %small= " – #{product.price}$"
-                %p
-                  = product.description
-                  - if product.amount > 4
-                    = link_to (fa_icon 'shopping-cart'), 'запили меня', class: 'btn btn-primary btn-xs pull-right'
-                  - elsif product.amount > 0
-                    = link_to 'запили меня', class: 'btn btn-warning btn-xs pull-right' do
-                      = fa_icon 'shopping-cart'
-                      %span.badge= product.amount
-                  - else
-                    = link_to 'Нет в наличии', 'запили меня', class: 'btn btn-primary btn-xs pull-right', disabled: true
+                .p= product.description.truncate 30
+                = render 'control_btns', product: product
           %br
           - prod += strips
 
     - if @products.size.zero?
-      %h1 Здесь ничего нет :D
+      %h1.text-center.light-gray
+        = fa_icon 'diamond'
+        Нет товаров
+
+#modal_div

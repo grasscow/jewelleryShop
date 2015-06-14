@@ -1,0 +1,23 @@
+.modal.fade{id: "myModal", tabindex: "-1", role: "dialog",  "aria-labelledby" => "myModalLabel", "aria-hidden" => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss"=>"modal", "aria-label"=>"Close"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4= @product.name
+      .modal-body
+        = image_tag @product.image.url(:original), class: 'img-responsive center-block'
+        %p
+          %big= @product.description
+      .modal-footer
+        - if @product.amount > 4
+          = link_to 'запили меня', class: 'btn btn-primary' do
+            = "#{@product.price}$"
+            = fa_icon 'shopping-cart'
+        - elsif @product.amount > 0
+          = link_to 'q', class: 'btn btn-warning' do
+            = "#{@product.price}$"
+            = fa_icon 'shopping-cart'
+        - else
+          = link_to 'Нет в наличии', '#', class: 'btn btn-primary', disabled: true
+        %button.btn.btn-default{"data-dismiss"=>"modal", "aria-label"=>"Close"} Закрыть

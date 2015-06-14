@@ -7,7 +7,7 @@
           = link_to (fa_icon 'plus'), new_product_path(category_id: @category), type: 'button', class: 'btn btn-danger btn-lg btn-block add-btn', remote: true
           %br
         - prod = s 
-        - while (product = @products[prod]).present?
+        - while @products.present? && (product = @products[prod]).present?
           = link_to product_path(product) do
             .thumbnail{ id: "product-#{product.id}"}
               = image_tag product.image.url(:small) 

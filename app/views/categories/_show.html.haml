@@ -1,12 +1,13 @@
 #products
-  - if @current_user.admin?
-    .row
-      .btn-group.pull-right{role: 'group'}
-        = link_to new_product_path(category_id: @category), data: {confirm: "Удалить Категорию?"}, type: 'button', class: 'btn btn-danger add-btn', remote: true do
-          = fa_icon 'trash-o'
+  -if session[:user_id].present?
+    - if @current_user.admin?
+      .row
+        .btn-group.pull-right{role: 'group'}
+          = link_to new_product_path(category_id: @category), data: {confirm: "Удалить Категорию?"}, type: 'button', class: 'btn btn-danger add-btn', remote: true do
+            = fa_icon 'trash-o'
 
-        = link_to new_product_path(category_id: @category), type: 'button', class: 'btn btn-danger add-btn', remote: true do
-          = fa_icon 'plus'
+          = link_to new_product_path(category_id: @category), type: 'button', class: 'btn btn-danger add-btn', remote: true do
+            = fa_icon 'plus'
     %br
 
   .row

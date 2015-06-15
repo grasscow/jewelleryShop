@@ -20,4 +20,34 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ru:
-  hello: "Hello world"
+  app:
+    name: Магазин
+  helpers:
+    sure: Вы уверены?
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+  activerecord:
+    models:
+      user: Пользователь
+      address: Адрес
+      product: Продут
+      categiry: Категория
+      cart: Корзина
+      line_item: Корзина
+      order: Заказ
+
+    attributes:
+      user:
+        name: Имя
+        email: Адрес электронной почты
+        password: Пароль
+        password_confirmation: Пароль (повторно)
+        role: Роль
+        gender: Пол
+        m_phone: Номер телефона
+        b_date: Дата рождения
+        first_name: Имя
+        second_name: Фамилия
+        patronymic: Отчество

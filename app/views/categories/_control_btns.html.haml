@@ -7,8 +7,9 @@
       %span.badge= product.amount
   - else
     = link_to 'Нет в наличии', root_path, class: 'btn btn-primary btn-xs', disabled: true
-  - if @current_user.admin?
-    = link_to edit_product_path(product), type: 'button', class: 'btn btn-default btn-xs', remote: true do
-      = fa_icon 'pencil'
-    = link_to product, method: :delete, data: {confirm: "Удалить?"}, type: 'button', class: 'btn btn-default btn-xs', remote: true do
-      = fa_icon 'trash-o'
+  -if session[:user_id].present?
+    - if @current_user.admin?
+      = link_to edit_product_path(product), type: 'button', class: 'btn btn-default btn-xs', remote: true do
+        = fa_icon 'pencil'
+      = link_to product, method: :delete, data: {confirm: "Удалить?"}, type: 'button', class: 'btn btn-default btn-xs', remote: true do
+        = fa_icon 'trash-o'

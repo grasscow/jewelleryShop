@@ -1,0 +1,76 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @user.errors.full_messages.each do |message|
+          %li= message
+.page-header
+  %h1 Регистрация
+  .form-group
+    =label_tag :first_name, User.human_attribute_name(:first_name)
+    =text_field_tag :first_name, nil, class: 'form-control', required: true
+  .form-group
+    =label_tag :second_name, User.human_attribute_name(:second_name)
+    =text_field_tag :second_name, nil, class: 'form-control', required: true
+  .form-group
+    =label_tag :patronymic, User.human_attribute_name(:patronymic)
+    =text_field_tag :patronymic,nil, class: 'form-control', required: true
+  .form-group
+    =label_tag :b_date, User.human_attribute_name(:b_date)
+    %br
+    =date_select(:b_date, 'create', start_year: 1935, end_year: Date.today.year)
+  .form-group
+    =label_tag :m_phone, User.human_attribute_name(:m_phone)
+    =text_field_tag :m_phone,nil, class: 'form-control', required: true
+  .form-group
+    =label_tag :email, User.human_attribute_name(:email)
+    =email_field_tag :email,nil, class: 'form-control'
+  .form-group
+    =label_tag :gender, User.human_attribute_name(:gender)
+    =select_tag :gender,  options_for_select(%w[м ж]),class: 'form-control'
+  .form-group
+    =label_tag :password, User.human_attribute_name(:password)
+    =password_field_tag :password,nil, class: 'form-control'
+  .form-group
+    =label_tag :password_confirmation, User.human_attribute_name(:password_confirmation)
+    =password_field_tag :password_confirmation,nil, class: 'form-control'
+  -if @current_user.try(:admin?)
+    .form-group
+      =label_tag :role, User.human_attribute_name(:role)
+      =select_tag :role, User.roles.map.with_index{|name,i| [name,i]}, {},class: 'form-control'
+  .actions=submit_tag 'Создать', class: 'btn btn-primary'
+
+
+  -#.field
+  -#  = f.label :b_date
+  -#  %br/
+  -#  = f.date_select :b_date
+  -#.field
+  -#  = f.label :m_phone
+  -#  %br/
+  -#  = f.text_field :m_phone
+  -#.field
+  -#  = f.label :email
+  -#  %br/
+  -#  = f.text_field :email
+  -#.field
+  -#  = f.label :gender
+  -#  %br/
+  -#  = f.text_field :gender
+  -#.field
+  -#  = f.label :role
+  -#  %br/
+  -#  = f.number_field :role
+  -#.field
+  -#  = f.label :password
+  -#  %br/
+  -#  = f.password_field :password
+  -#.field
+  -#  = f.label :password_confirmation
+  -#  %br/
+  -#  = f.password_field :password_confirmation
+  -#.actions
+  -#  = f.submit

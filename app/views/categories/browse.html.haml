@@ -3,13 +3,13 @@
     .list-group
       - @categories.each_with_index do |c, i|
         = link_to c.name, category_path(c), type: 'button', class: "list-group-item category-btn #{'active' if i.zero?}", remote: true
-
-    - if @current_user.admin?
-      = form_for(@new_category) do |f|
-        .form-group
-          .input-group
-            = f.text_field :name, placeholder: 'Новая Категория', class: 'form-control'
-            .input-group-btn
-              = f.submit '+', class: 'btn btn-danger'
+    -if session[:user_id].present?
+      - if @current_user.admin?
+        = form_for(@new_category) do |f|
+          .form-group
+            .input-group
+              = f.text_field :name, placeholder: 'Новая Категория', class: 'form-control'
+              .input-group-btn
+                = f.submit '+', class: 'btn btn-danger'
   .col-md-9
     = render 'show'

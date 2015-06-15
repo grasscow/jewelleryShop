@@ -10,14 +10,14 @@
         %p
           %big= @product.description
       .modal-footer
-        - if @product.amount > 4
-          = link_to 'запили меня', class: 'btn btn-primary' do
-            = "#{@product.price}$"
-            = fa_icon 'shopping-cart'
-        - elsif @product.amount > 0
-          = link_to 'q', class: 'btn btn-warning' do
-            = "#{@product.price}$"
-            = fa_icon 'shopping-cart'
-        - else
-          = link_to 'Нет в наличии', '#', class: 'btn btn-primary', disabled: true
+        -#- if @product.amount > 4
+        -#  = link_to  line_items_path(product_id: product.id), class: 'btn btn-primary' do
+        -#    = "#{@product.price}$"
+        -#    = fa_icon 'shopping-cart'
+        -#- elsif @product.amount > 0
+        -#  = link_to 'q', class: 'btn btn-warning' do
+        -#    = "#{@product.price}$"
+        -#    = fa_icon 'shopping-cart'
+        -#- else
+        -#  = link_to 'Нет в наличии', '#', class: 'btn btn-primary', disabled: true
         %button.btn.btn-default{"data-dismiss"=>"modal", "aria-label"=>"Close"} Закрыть

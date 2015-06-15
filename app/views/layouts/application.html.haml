@@ -11,4 +11,5 @@
 
   .container
     = render 'layouts/flash_messages'
+    =render(@cart) if @cart
     = yield

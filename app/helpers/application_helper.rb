@@ -7,4 +7,7 @@ module ApplicationHelper
         notice:  'alert-info'
     }[flash_type.to_sym] || flash_type.to_s
   end
+  def number_to_currency_br(number)
+    number_to_currency(number, :unit => "$", :separator => ",", :delimiter => ".")
+  end
 end

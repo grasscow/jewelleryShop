@@ -1,7 +1,7 @@
 .page-header
   %h1 корзина
 -if @line_items.blank?
-  .alert.alert-info Вкорзине нет товаров
+  .alert.alert-info В корзине нет товаров
 -else
   .list-group
     -@line_items.each_with_index do  |line_item,i|
@@ -10,8 +10,8 @@
         .pull-right
           =line_item.quantity
           &times;
-          =number_to_currency line_item.price
-          ="=#{number_to_currency line_item.total_price}"# в модели лайн итемс метод
+          =number_to_currency_br line_item.price
+          ="=#{number_to_currency_br line_item.total_price}"# в модели лайн итемс метод
           = link_to  line_item, :method => :delete, class:"btn btn-danger" do
             =fa_icon "fa times"
             удалить
@@ -25,7 +25,7 @@
     Всего
     =@line_items.to_a.sum(&:quantity)
     Товаров на сумму
-    =number_to_currency @line_items.to_a.sum(&:total_price) #&&
+    =number_to_currency_br @line_items.to_a.sum(&:total_price) #&&
 
 
 
@@ -37,8 +37,4 @@
   =fa_icon "trash"
   очистить корзину
 
-<<<<<<< HEAD
 =link_to "Оформить заказ", new_order_path, class: 'btn btn-success'
-=======
-=link_to "Оформить заказ", new_order_path
->>>>>>> ac0507053eeb1e661b5749a3f9adb640a0a53fe8

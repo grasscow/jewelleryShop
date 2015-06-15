@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   def browse
     @categories = Category.all
     @category = @categories.first
-    @products = @category.try :products || []
+    @products =  @category.products
     @new_category = Category.new
   end
 

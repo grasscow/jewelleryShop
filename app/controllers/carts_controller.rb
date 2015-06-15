@@ -4,12 +4,14 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.all
+    respond_to(&:js)
+    #@carts = Cart.all
   end
 
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @line_items = @cart.line_items
   end
 
   # GET /carts/new
@@ -55,10 +57,8 @@ class CartsController < ApplicationController
   # DELETE /carts/1.json
   def destroy
     @cart.destroy
-    respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to root_path, notice: "Корзина пуста"
+
   end
 
   private

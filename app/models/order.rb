@@ -11,8 +11,18 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: true
   validates :address_id, presence: true
   validates :dalivery_date, presence: true
-  validates :delivery_type, presence: true, inclusion: {in: 0...ROLES.size}
-  validates :status, presence: true, inclusion: {in: 0...ROLES.size}
-  validates :pay_type, presence: true, inclusion: {in: 0...ROLES.size}
+  validates :delivery_type, presence: true, inclusion: {in: 0...DELIVERY_TYPE.size}
+  validates :status, presence: true, inclusion: {in: 0...STATUS.size}
+  validates :pay_type, presence: true, inclusion: {in: 0...PAY_TYPE.size}
   validates :active, presence: true
+
+
+  validate :check_cart
+  scope :ordering, ->{order(created_at: :desc)}
+
+  def check_cart
+    if cart&&cart.line_items.blank?
+      errors/add(:cart, 'пуста')
+    end
+  end
 end

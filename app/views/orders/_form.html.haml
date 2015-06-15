@@ -7,37 +7,33 @@
       %ul
         - @order.errors.full_messages.each do |message|
           %li= message
-  .field
-    = f.label :cart_id
-    %br/
-    = f.text_field :cart_id
-  .field
-    = f.label :user_id
-    %br/
-    = f.text_field :user_id
-  .field
-    = f.label :address_id
-    %br/
-    = f.text_field :address_id
-  .field
-    = f.label :status
-    %br/
-    = f.number_field :status
-  .field
-    = f.label :delivery_type
-    %br/
-    = f.number_field :delivery_type
-  .field
-    = f.label :dalivery_date
-    %br/
-    = f.date_select :dalivery_date
-  .field
-    = f.label :pay_type
-    %br/
-    = f.number_field :pay_type
-  .field
-    = f.label :active
-    %br/
-    = f.check_box :active
-  .actions
-    = f.submit
+  .form-horizontal
+    .form-group
+      %label.col-sm-2.control-label Адрес
+      .col-sm-10
+        = f.collection_select :address_id, @current_user.addresses, :id, :locality, class: 'chosen-select'
+  .form-horizontal
+    .form-group
+      %label.col-sm-2.control-label Тип Доставки
+      .col-sm-10
+        = f.select :delivery_type, Order::DELIVERY_TYPE.each_with_index { |v,i| [ v, i ] }, {}, {class: 'form-control'}
+  .form-horizontal
+    .form-group
+      %label.col-sm-2.control-label Дата Доставки
+      .col-sm-10
+        = f.date_select :dalivery_date, {}, {class: 'form-control'}
+  .form-horizontal
+    .form-group
+      %label.col-sm-2.control-label Тип Доставки
+      .col-sm-10
+        = f.select :pay_type, Order::PAY_TYPE.each_with_index { |v,i| [ v, i ] }, {}, {class: 'form-control'}
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        %label
+          = f.check_box :active
+          Active? чо эт
+  .form-group
+    .pull-right
+      = f.submit 'Оформить!', class: 'btn btn-success'
+

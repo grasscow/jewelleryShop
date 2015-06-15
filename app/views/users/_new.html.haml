@@ -7,8 +7,7 @@
       %ul
         - @user.errors.full_messages.each do |message|
           %li= message
-.page-header
-  %h1 Регистрация
+
   .form-group
     =label_tag :first_name, User.human_attribute_name(:first_name)
     =text_field_tag :first_name, nil, class: 'form-control', required: true

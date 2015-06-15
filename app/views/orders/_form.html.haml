@@ -27,12 +27,14 @@
       %label.col-sm-2.control-label Тип Доставки
       .col-sm-10
         = f.select :pay_type, Order::PAY_TYPE.each_with_index { |v,i| [ v, i ] }, {}, {class: 'form-control'}
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      .checkbox
-        %label
-          = f.check_box :active
-          Active? чо эт
+  -if session[:user_id].present?
+    -if @current_user.try(:admin?)
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          .checkbox
+            %label
+              = f.check_box :active, {checked: false}
+              Аннулировать?
   .form-group
     .pull-right
       = f.submit 'Оформить!', class: 'btn btn-success'

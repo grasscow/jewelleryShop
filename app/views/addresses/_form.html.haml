@@ -27,13 +27,15 @@
     = f.label :addres_line
     %br/
     = f.text_area :addres_line
-  .field
-    = f.label :delete
-    %br/
-    = f.check_box :delete
-  .field
-    = f.label :main
-    %br/
-    = f.check_box :main
+  -if session[:user_id].present?
+    -if @current_user.try(:admin?)
+      .field
+        = f.label :is_delete
+        %br/
+        = f.check_box :is_delete
+      .field
+        = f.label :main
+        %br/
+        = f.check_box :main
   .actions
     = f.submit

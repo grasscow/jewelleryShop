@@ -24,7 +24,7 @@
         = f.date_select :dalivery_date, {}, {class: 'form-control'}
   .form-horizontal
     .form-group
-      %label.col-sm-2.control-label Тип Доставки
+      %label.col-sm-2.control-label Тип Оплаты
       .col-sm-10
         = f.select :pay_type, Order::PAY_TYPE.each_with_index { |v,i| [ v, i ] }, {}, {class: 'form-control'}
   -if session[:user_id].present?

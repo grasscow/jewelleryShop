@@ -8,6 +8,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+<<<<<<< HEAD
+=======
+    format.js
+>>>>>>> ac0507053eeb1e661b5749a3f9adb640a0a53fe8
   end
 
   # GET /products/new

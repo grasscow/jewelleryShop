@@ -15,7 +15,11 @@
       %div{class: "col-xs-#{12 / strips}"}
         - prod = s 
         - while @products.present? && (product = @products[prod]).present?
+<<<<<<< HEAD
           = link_to product_path(product), remote: true do
+=======
+          = link_to product_path(product) do
+>>>>>>> ac0507053eeb1e661b5749a3f9adb640a0a53fe8
             .thumbnail{ id: "product-#{product.id}"}
               = image_tag product.image.url(:medium)
               .caption
@@ -31,5 +35,8 @@
       %h1.text-center.light-gray
         = fa_icon 'diamond'
         Нет товаров
+<<<<<<< HEAD
 
 #modal_div
+=======
+>>>>>>> ac0507053eeb1e661b5749a3f9adb640a0a53fe8

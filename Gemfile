@@ -53,4 +53,7 @@ gem 'bcrypt'
 gem 'paperclip'
 gem 'remotipart'
 gem 'responders'
+<<<<<<< HEAD
 gem 'chosen-rails'
+=======
+>>>>>>> ac0507053eeb1e661b5749a3f9adb640a0a53fe8
